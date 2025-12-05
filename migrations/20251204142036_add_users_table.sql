@@ -1,7 +1,8 @@
+-- +goose Up
+-- +goose StatementBegin
 
-
---  Create Users table
-CREATE TABLE users (
+-- Create Users table
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -11,19 +12,19 @@ CREATE TABLE users (
 );
 
 -- Create Roles table
-CREATE TABLE roles (
+CREATE TABLE IF NOT EXISTS roles (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
---  Create Permissions table
-CREATE TABLE permissions (
+-- Create Permissions table
+CREATE TABLE IF NOT EXISTS permissions (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
 );
 
---  Create Role_Permissions table
-CREATE TABLE role_permissions (
+-- Create Role_Permissions table
+CREATE TABLE IF NOT EXISTS role_permissions (
     role_id INT NOT NULL,
     permission_id INT NOT NULL,
     PRIMARY KEY (role_id, permission_id),
@@ -35,8 +36,8 @@ CREATE TABLE role_permissions (
         ON DELETE CASCADE
 );
 
---  Create User_Roles table
-CREATE TABLE user_roles (
+-- Create User_Roles table
+CREATE TABLE IF NOT EXISTS user_roles (
     user_id INT NOT NULL,
     role_id INT NOT NULL,
     PRIMARY KEY (user_id, role_id),
@@ -48,4 +49,17 @@ CREATE TABLE user_roles (
         ON DELETE CASCADE
 );
 
+-- +goose StatementEnd
 
+
+
+-- +goose Down
+-- +goose StatementBegin
+
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS role_permissions;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS users;
+
+-- +goose StatementEnd

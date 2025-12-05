@@ -1,0 +1,896 @@
+{
+	"info": {
+		"_postman_id": "c79632b1-3c2b-4f64-b1f9-3f2970017802",
+		"name": "Users API",
+		"description": "Users API — Success + Most Common Errors Only",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50185434",
+		"_collection_link": "https://pavanneroju7-8910883.postman.co/workspace/2b8be00d-f259-480d-8a4c-7a771bca4e36/collection/50185434-c79632b1-3c2b-4f64-b1f9-3f2970017802?action=share&source=collection_link&creator=50185434"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"item": [
+						{
+							"name": "RequestBody → 201 Created",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"pavan\",\n  \"username\": \"pavan123\",\n  \"email\": \"pavanneroju7@gmail.com\",\n  \"password\": \"Pavan@31\",\n  \"mobile_no\": \"9012345678\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "201 Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"pavan\",\n  \"username\": \"pavan123\",\n  \"email\": \"pavanneroju7@gmail.com\",\n  \"password\": \"Pavan@31\",\n  \"mobile_no\": \"9012345678\"\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/users",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"code": 201,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"User created successfully\" }"
+								}
+							]
+						},
+						{
+							"name": "RequestBody → 400 Missing field",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"username\": \"john123\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"username\": \"john123\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/users",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"required field missing\" }"
+								}
+							]
+						},
+						{
+							"name": "RequestBody → 409 User Exists",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"john\",\n  \"username\": \"john123\",\n  \"email\": \"john@gmail.com\",\n  \"password\": \"John@31\",\n  \"mobile_no\": \"9012345678\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "409 Conflict",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"john\",\n  \"username\": \"john123\",\n  \"email\": \"john@gmail.com\",\n  \"password\": \"John@31\",\n  \"mobile_no\": \"9012345678\"\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/users",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"code": 409,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"user already exists\" }"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get User By ID",
+					"item": [
+						{
+							"name": "Request → 200 OK",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA1MTEsImlhdCI6MTc2NDkwOTYxMSwidXNlciI6MjIzfQ.6Z9b_ikYGfy0Y7l_bLtt41tWDYlKu1wS0UFUCyUbqV1jfQLiUGehmqF2dI-FvNI5",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8083/api/v1/users/223",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"223"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Request → 200 OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token}}",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8083/api/v1/users/222",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8083",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"222"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Dec 2025 19:00:49 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "143"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 222,\n    \"name\": \"pavan\",\n    \"email\": \"pavanneroju7@gmail.com\",\n    \"username\": \"pavan123\",\n    \"mobile_number\": \"\",\n    \"created_at\": \"2025-12-05T00:20:58.935848Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Request → 404 Not Found",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ4NzU1MjQsImlhdCI6MTc2NDg3NDYyNCwidXNlciI6MjIyfQ.f7rF3LDwIf8VKpoRpdeu_K9ze93P6o-j38vlVYqHvdMLQ1t_qWS6ZO6zpYzAoc5r",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/users/12",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"12"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "404 Not Found",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ4NzU1MjQsImlhdCI6MTc2NDg3NDYyNCwidXNlciI6MjIyfQ.f7rF3LDwIf8VKpoRpdeu_K9ze93P6o-j38vlVYqHvdMLQ1t_qWS6ZO6zpYzAoc5r",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/users/12",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"12"
+											]
+										}
+									},
+									"code": 404,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"user not found\" }"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"item": [
+						{
+							"name": "RequestBody → 200 Updated",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzMNCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ4NzE3OTMsImlhdCI6MTc2NDg3MDg5MywidXNlciI6N30.5P3fbvnjoub88KyeJfgLFfYR_gQNyBSzoeWwPBf97SeMcs1Jyii4ei3EKZfBS06B"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"pavan12453\",\n  \"email\": \"pavanneroju@gmail.com\",\n  \"username\" : \"pava31\",\n  \"mobile_number\": \"8701234562\"\n\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/users/222",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"222"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzMNCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ4NzE3OTMsImlhdCI6MTc2NDg3MDg5MywidXNlciI6N30.5P3fbvnjoub88KyeJfgLFfYR_gQNyBSzoeWwPBf97SeMcs1Jyii4ei3EKZfBS06B"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"pavan12453\",\n  \"email\": \"pavanneroju@gmail.com\",\n  \"username\" : \"pava31\",\n  \"mobile_number\": \"8701234562\"\n\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/users/222",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"222"
+											]
+										}
+									},
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"User updated\" }"
+								},
+								{
+									"name": "RequestBody → 200 Updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ4NzE3OTMsImlhdCI6MTc2NDg3MDg5MywidXNlciI6N30.5P3fbvnjoub88KyeJfgLFfYR_gQNyBSzoeWwPBf97SeMcs1Jyii4ei3EKZfBS06B"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"pavan12453\",\n  \"email\": \"pavanneroju@gmail.com\",\n  \"username\" : \"pava31\",\n  \"mobile_number\": \"8701234562\"\n\n}"
+										},
+										"url": {
+											"raw": "{{base_url}}/users/222",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"222"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 05 Dec 2025 04:13:56 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "27"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User updated\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Request → 403 Forbidden",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"name\": \"hack\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/users/220",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"220"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Request → 403 Forbidden",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"name\": \"hack\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/users/220",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"220"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 05 Dec 2025 04:14:44 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "25"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"unauthorized\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"item": [
+						{
+							"name": "Request → 200 Deleted",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/users/222",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"222"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/users/222",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"222"
+											]
+										}
+									},
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"User deleted\" }"
+								}
+							]
+						},
+						{
+							"name": "Request → 403 Forbidden",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzMNCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/users/999",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"999"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "403 Forbidden",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzMNCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MDg2MzgsImlhdCI6MTc2NDkwNzczOCwidXNlciI6MjIyfQ.tVOqx329vcJnIEOabvGwXJ_kbsJIGLMe-7-9KO7nVGl77ybFJbKKEdnxyWCW71Cz",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/users/999",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"999"
+											]
+										}
+									},
+									"code": 403,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"cannot delete other user\" }"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UsersProfile",
+			"item": [
+				{
+					"name": "UserProfile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bio\": \"Full-stack developer and coffee lover.\",\r\n  \"avatar_url\": \"https://example.com/avatars/123.png\",\r\n  \"location\": \"Seattle, WA\",\r\n  \"dob\": \"1990-05-21T00:00:00Z\",\r\n  \"preferences\": {\r\n    \"language\": \"en\",\r\n    \"newsletter\": \"true\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/users/7/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bio\": \"Full-stack developer and coffee lover.\",\r\n  \"avatar_url\": \"https://example.com/avatars/123.png\",\r\n  \"location\": \"Seattle, WA\",\r\n  \"dob\": \"1990-05-21T00:00:00Z\",\r\n  \"preferences\": {\r\n    \"language\": \"en\",\r\n    \"newsletter\": \"true\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/api/v1/users/7/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"7",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Dec 2025 14:29:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"user_id\": 7,\n    \"bio\": \"Full-stack developer and coffee lover.\",\n    \"avatar_url\": \"https://example.com/avatars/123.png\",\n    \"location\": \"Seattle, WA\",\n    \"dob\": \"1990-05-21T05:30:00+05:30\",\n    \"preferences\": {\n        \"language\": \"en\",\n        \"newsletter\": \"true\"\n    },\n    \"created_at\": \"2025-12-04T19:58:11.672256+05:30\",\n    \"updated_at\": \"2025-12-04T19:58:11.672256+05:30\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetUserProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/users/7/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/v1/users/7/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"7",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Dec 2025 14:30:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"user_id\": 7,\n    \"bio\": \"Full-stack developer and coffee lover.\",\n    \"avatar_url\": \"https://example.com/avatars/123.png\",\n    \"location\": \"Seattle, WA\",\n    \"dob\": \"1990-05-21T05:30:00+05:30\",\n    \"preferences\": {\n        \"language\": \"en\",\n        \"newsletter\": \"true\"\n    },\n    \"created_at\": \"2025-12-04T19:58:11.672256+05:30\",\n    \"updated_at\": \"2025-12-04T19:58:11.672256+05:30\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8083/api/v1"
+		},
+		{
+			"key": "token",
+			"value": "Bearer {{access_token}}"
+		}
+	]
+}

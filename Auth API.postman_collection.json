@@ -1,0 +1,720 @@
+{
+	"info": {
+		"_postman_id": "fc4c4dc2-192c-47d0-a3b0-71dc1fe27fcd",
+		"name": "Auth API",
+		"description": "Auth API — Success + Most Common Errors Only",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50185434",
+		"_collection_link": "https://pavanneroju7-8910883.postman.co/workspace/2b8be00d-f259-480d-8a4c-7a771bca4e36/collection/50185434-fc4c4dc2-192c-47d0-a3b0-71dc1fe27fcd?action=share&source=collection_link&creator=50185434"
+	},
+	"item": [
+		{
+			"name": "Generate Reset Token",
+			"item": [
+				{
+					"name": "200 OK → Reset link sent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"pavanneroju7@gmail.com\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/generate-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"generate-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"email\": \"pavanneroju7@gmail.com\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/generate-token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"generate-token"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"message\": \"reset link sent successfully\" }"
+						}
+					]
+				},
+				{
+					"name": "400 Bad Request → Missing Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/generate-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"generate-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/generate-token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"generate-token"
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"email required\" }"
+						}
+					]
+				},
+				{
+					"name": "404 Not Found → User not found",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"noone@gmail.com\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/generate-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"generate-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"email\": \"noone@gmail.com\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/generate-token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"generate-token"
+									]
+								}
+							},
+							"code": 404,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"user not found\" }"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reset Password",
+			"item": [
+				{
+					"name": "200 OK → Password reset successful",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"password\": \"Pavan@123\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/reset-password?token={{reset_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{reset_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"password\": \"Pavan@123\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/reset-password?token={{reset_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"reset-password"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{reset_token}}"
+										}
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"message\": \"password reset successful\" }"
+						}
+					]
+				},
+				{
+					"name": "400 Bad Request → Password Missing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"password\": \"\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/reset-password?token={{reset_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{reset_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"password\": \"\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/reset-password?token={{reset_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"reset-password"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{reset_token}}"
+										}
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"password required\" }"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "200 OK → Login successful",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"username\": \"pavan123\", \r\n    \"password\": \"Kumar@31\" \r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"username\": \"pavan123\", \r\n    \"password\": \"Kumar@31\" \r\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"access_token\": \"{{access_token}}\", \"refresh_token\": \"{{refresh_token}}\" }"
+						}
+					]
+				},
+				{
+					"name": "400 Bad Request → Missing Fields",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"username\": \"\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"username and password required\" }"
+						}
+					]
+				},
+				{
+					"name": "404 Not Found → User not found",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"unknown\", \"password\": \"abc\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"username\": \"unknown\", \"password\": \"abc\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"code": 404,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"user not found\" }"
+						}
+					]
+				},
+				{
+					"name": "401 Unauthorized → Wrong password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"pavan123\", \"password\": \"wrongpass\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401 Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"username\": \"pavan123\", \"password\": \"wrongpass\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"code": 401,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"error\": \"wrong password\" }"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"item": [
+				{
+					"name": "200 OK → Logout successful",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"access\": \"{{access_token}}\", \"refresh\": \"{{refresh_token}}\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"access\": \"{{access_token}}\", \"refresh\": \"{{refresh_token}}\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"message\": \"user logged out successfully\" }"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Generate Access Token",
+			"item": [
+				{
+					"name": "200 OK → New Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{refresh_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/access-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"access-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{refresh_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/auth/access-token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"access-token"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{ \"access_token\": \"{{access_token}}\" }"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8083/api/v1"
+		},
+		{
+			"key": "access_token",
+			"value": "RANDOM_32_CHAR_ACCESS_TOKEN"
+		},
+		{
+			"key": "refresh_token",
+			"value": "RANDOM_32_CHAR_REFRESH_TOKEN"
+		},
+		{
+			"key": "reset_token",
+			"value": "RANDOM_32_CHAR_RESET_TOKEN"
+		}
+	]
+}

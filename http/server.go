@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
 
 	//"net/smtp"
 	"time"
@@ -29,8 +28,9 @@ import (
 )
 
 type Server struct {
-	DBStatus    string
-	UserService *service.UserService
+	DBStatus       string
+	UserService    *service.UserService
+	ProfileService *service.ProfileService
 
 	RedisClient *redis.Client
 
@@ -47,13 +47,15 @@ type Server struct {
 // Constructor
 func NewServer(dbStatus string, db *pgxpool.Pool, rdb *redis.Client, kafka *kafka.KafkaNotificationProducer, bloom *bloom.BloomFilter) *Server {
 	userRepo := repositories.NewUserRepo(db)
+	profileRepo := repositories.NewProfileRepo(db)
 
 	roleRepo := repositories.NewRoleRepo(db)
 	userroleRepo := repositories.NewUserRoleRepo(db)
-	jwtSecret := os.Getenv("JWT_SECRET_KEY")
-	j := jwt.NewJwt(jwtSecret)
+
+	j := jwt.NewJwt("abc")
 
 	userService := service.NewUserService(userRepo, kafka, userroleRepo, rdb, bloom)
+	profileService := service.NewProfileService(profileRepo)
 
 	authService := service.NewAuthService(userService, rdb, j, kafka)
 	roleService := service.NewRoleService(roleRepo)
@@ -61,8 +63,9 @@ func NewServer(dbStatus string, db *pgxpool.Pool, rdb *redis.Client, kafka *kafk
 	userroleService := service.NewUserRoleService(userroleRepo)
 
 	return &Server{
-		DBStatus:    dbStatus,
-		UserService: userService,
+		DBStatus:       dbStatus,
+		UserService:    userService,
+		ProfileService: profileService,
 
 		RedisClient:       rdb,
 		AuthService:       authService,
@@ -80,6 +83,7 @@ func (s *Server) Listen(ctx context.Context, addr string) error {
 
 	// Create handlers (Dependency Injection)
 	userHandler := handler.NewUserHandler(s.UserService)
+	profileHandler := handler.NewProfileHandler(s.ProfileService)
 	authHandler := handler.NewAuthHandler(s.AuthService)
 	adminHandler := handler.NewAdminHandler(s.RoleService, s.UserRoleService, s.UserService)
 
@@ -93,12 +97,18 @@ func (s *Server) Listen(ctx context.Context, addr string) error {
 	r.Route("/api/v1/", func(r chi.Router) {
 
 		r.Route("/users", func(r chi.Router) {
-			r.Get("/{Id}", userHandler.GetUserById)
+			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.read.self")).Get("/{Id}", userHandler.GetUserById)
 			r.Post("/", userHandler.CreateUser)
 			r.Post("/{username}/check", userHandler.CheckUsernameHandler)
-			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.read.all")).Get("/", userHandler.GetAllUsers)
-			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.self.update")).Put("/{id}", userHandler.UpdateUser)
-			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.self.delete")).Delete("/{id}", userHandler.DeleteUser)
+			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.read.all")).Get("/all", userHandler.GetAllUsers)
+			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.update.self")).Put("/{Id}", userHandler.UpdateUser)
+			r.With(middlewares.AuthMiddleware(s.AuthService), middlewares.RequirePermission(s.AuthorizseService, "user.delete.self")).Delete("/{Id}", userHandler.DeleteUser)
+
+			// Profile routes nested under a user
+			r.Route("/{id}/profile", func(r chi.Router) {
+				r.Post("/", profileHandler.CreateProfile)
+				r.Get("/", profileHandler.GetProfile)
+			})
 		})
 		// Auth routes under /api/test/auth
 		r.Route("/auth", func(r chi.Router) {
@@ -114,7 +124,7 @@ func (s *Server) Listen(ctx context.Context, addr string) error {
 			r.Post("/", adminHandler.CreateRole)
 			r.Post("/assign-role", adminHandler.AddRoleToUser)
 			r.Delete("/user/{Id}", adminHandler.DeleteUser)
-			r.Get("/user/{Id}", adminHandler.GetUserByID)
+
 		})
 
 	})

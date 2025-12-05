@@ -3,6 +3,7 @@ package middlewares
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"test123/service"
 	"test123/utils"
@@ -44,6 +45,7 @@ func AuthMiddleware(auth *service.AuthService) func(http.Handler) http.Handler {
 			}
 
 			// Inject userID into request context
+			log.Println(userID)
 			ctx := context.WithValue(r.Context(), UserIDKey, userID)
 
 			next.ServeHTTP(w, r.WithContext(ctx))

@@ -130,7 +130,7 @@ func (h *UserHandlers) UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 	logger.Info("UpdateUser", "request received")
 
-	idStr := chi.URLParam(r, "id")
+	idStr := chi.URLParam(r, "Id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil || id <= 0 {
 		logger.Warn("UpdateUser", "invalid id", map[string]interface{}{
@@ -198,7 +198,7 @@ func (h *UserHandlers) DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 	logger.Info("DeleteUser", "request received")
 
-	idStr := chi.URLParam(r, "id")
+	idStr := chi.URLParam(r, "Id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil || id <= 0 {
 		logger.Warn("DeleteUser", "invalid id", map[string]interface{}{
@@ -289,9 +289,9 @@ func (h *UserHandlers) GetUserByUsername(w http.ResponseWriter, r *http.Request)
 
 func (h *UserHandlers) GetUserById(w http.ResponseWriter, r *http.Request) {
 	// Extract "id" from URL parameters
-	idStr := chi.URLParam(r, "id")
+	idStr := chi.URLParam(r, "Id")
 	if idStr == "" {
-		utils.RespondJSON(w, http.StatusBadRequest, map[string]string{"error": "user id is required"})
+		utils.RespondJSON(w, http.StatusBadRequest, map[string]string{"error": "user Id is required"})
 		return
 	}
 

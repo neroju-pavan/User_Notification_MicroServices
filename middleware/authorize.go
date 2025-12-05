@@ -5,9 +5,12 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"test123/service"
 	"test123/utils"
 	"time"
+
+	"github.com/go-chi/chi/v5"
 )
 
 func RequirePermission(s *service.AuthorizeService, permission string) func(http.Handler) http.Handler {
@@ -58,6 +61,8 @@ func RequirePermission(s *service.AuthorizeService, permission string) func(http
 			// Check if required permission exists
 			hasPermission := false
 			for _, p := range perms {
+				log.Println("user permission:", p)
+
 				if p == permission {
 					hasPermission = true
 					break
@@ -67,6 +72,24 @@ func RequirePermission(s *service.AuthorizeService, permission string) func(http
 			if !hasPermission {
 				utils.RespondJSON(w, 403, map[string]string{"error": "forbidden - insufficient permissions"})
 				return
+			}
+
+			if strings.HasSuffix(permission, ".self") {
+
+				pathIDStr := chi.URLParam(r, "Id")
+				pathID, err := strconv.Atoi(pathIDStr)
+				if err != nil {
+					utils.RespondJSON(w, 400, map[string]string{"error": "invalid user id param"})
+					return
+				}
+
+				// enforce only self-access
+				if pathID != userID {
+					utils.RespondJSON(w, 403, map[string]string{
+						"error": "forbidden - cannot access other user's data",
+					})
+					return
+				}
 			}
 
 			//  Permission granted, continue

@@ -1,0 +1,813 @@
+{
+	"info": {
+		"_postman_id": "4626c8d5-4b2e-44d9-baa0-b595d5827a45",
+		"name": "Admin API",
+		"description": "Admin APIs — Success + Most Common Errors Only",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50185434",
+		"_collection_link": "https://pavanneroju7-8910883.postman.co/workspace/2b8be00d-f259-480d-8a4c-7a771bca4e36/collection/50185434-4626c8d5-4b2e-44d9-baa0-b595d5827a45?action=share&source=collection_link&creator=50185434"
+	},
+	"item": [
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Create Role",
+					"item": [
+						{
+							"name": "Request → 201 Success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"name\": \"manager\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "201 Created",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"name\": \"manager\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												""
+											]
+										}
+									},
+									"code": 201,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"role created successfully\" }"
+								},
+								{
+									"name": "Request → 201 Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"name\": \"manager\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 05 Dec 2025 04:50:46 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"role created successfully\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Request → 400 Missing Name",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												""
+											]
+										}
+									},
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"role name is required\" }"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Add Role to User",
+					"item": [
+						{
+							"name": "Request → 200 Success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"user_id\": 223, \"role\": \"manager\" }"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/assign-role",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"assign-role"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"user_id\": 223, \"role\": \"manager\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/assign-role",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"assign-role"
+											]
+										}
+									},
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"role assigned to user\" }"
+								},
+								{
+									"name": "Request → 200 Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \"user_id\": 223, \"role\": \"manager\" }"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/assign-role",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"assign-role"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 05 Dec 2025 04:51:45 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "36"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"role assigned to user\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Request → 400 Missing Fields",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/assign-role",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"assign-role"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Request → 400 Missing Fields",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}"
+										},
+										"url": {
+											"raw": "{{base_url}}/admin/assign-role",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"assign-role"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 05 Dec 2025 04:52:36 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "42"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"user_id and role are required\"\n}"
+								}
+							]
+						}
+					]
+				}
+			],
+			"description": "Admin can create and Assign role to ans user."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Delete User",
+					"item": [
+						{
+							"name": "Request → 200 Success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/user/12",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"12"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/admin/user/12",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"user",
+												"12"
+											]
+										}
+									},
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"message\": \"user deleted successfully\" }"
+								}
+							]
+						},
+						{
+							"name": "Request → 400 Missing ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Bad Request",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/admin/user",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"user"
+											]
+										}
+									},
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"missing userId param\" }"
+								}
+							]
+						},
+						{
+							"name": "Request → 404 Not Found",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/user/9999",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"9999"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "404 Not Found",
+									"originalRequest": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/admin/user/9999",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"admin",
+												"user",
+												"9999"
+											]
+										}
+									},
+									"code": 404,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{ \"error\": \"user not found\" }"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pagination",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQ5MTA5ODYsImlhdCI6MTc2NDkxMDA4NiwidXNlciI6MjIwfQ.RXxbyotMyV1nQlRWzIWGuxzmkC5ZTlIHRz_6z9ZuCC99qFRTBV9Gnu35VW2Wz11g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"unknown\", \"password\": \"abc\" }"
+				},
+				"url": {
+					"raw": "{{base_url}}/users/all?limit=5&search=a",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "search",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Pagination",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"unknown\", \"password\": \"abc\" }"
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/users/all?limit=5&search=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "search",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 05 Dec 2025 04:49:14 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"next_cursor\": \"2025-12-05T00:06:41.520207Z\",\n    \"users\": [\n        {\n            \"id\": 220,\n            \"name\": \"Admin User\",\n            \"email\": \"admin@example.com\",\n            \"username\": \"admin\",\n            \"mobile_number\": \"9999999999\",\n            \"created_at\": \"2025-12-05T00:06:41.520207Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8083/api/v1"
+		},
+		{
+			"key": "token",
+			"value": "Bearer {{access_token}}"
+		}
+	]
+}
